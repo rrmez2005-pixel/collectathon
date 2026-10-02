@@ -64,14 +64,25 @@ int main()
 
     while (true)
     {
+        //Player Looping
         bn::fixed x = player.x();
         bn::fixed y =  player.y();
+
         if (x > MAX_X) {
             x = MIN_X;
         }
         else if (x < MIN_X) {
             x = MAX_X;
         }
+        if (y > MAX_Y) {
+            y = MIN_Y;
+        }
+        else if (y < MIN_Y) {
+            y = MAX_Y;
+        }
+
+        player.set_x(x);
+        player.set_y(y);
 
         // Move player with d-pad
         if (bn::keypad::left_held())

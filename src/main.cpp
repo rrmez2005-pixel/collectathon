@@ -14,7 +14,11 @@
 #include "common_fixed_8x16_font.h"
 
 // Pixels / Frame player moves at
-static constexpr bn::fixed SPEED = 1;
+static constexpr bn::fixed SPEED = 5;
+
+//Starting position for player and dot
+static constexpr int START_X = 5;
+static constexpr int START_Y = 10;
 
 // Width and height of the the player and treasure bounding boxes
 static constexpr bn::size PLAYER_SIZE = {8, 8};
@@ -45,8 +49,15 @@ int main()
 
     int score = 0;
 
+    static constexpr int P_START_X = -50;
+    static constexpr int P_START_Y = 50;
+
+    static constexpr int DOT_START_X = 5;
+    static constexpr int DOT_START_Y = 10;
+
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(-50, 50);
     bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(0, 0);
+
 
     while (true)
     {

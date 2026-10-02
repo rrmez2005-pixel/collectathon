@@ -114,6 +114,7 @@ int main()
             if(boosts >= 1) {
                 speed = 5;
                 boosts = boosts - 1; 
+                
             }
         }
 

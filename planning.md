@@ -17,6 +17,7 @@ Now, we are on #6 which is the last change. And so far, we set up the if stateme
 
 - #3 I wanted to just add P_START X and Y along with the dot but it didn't work once we had pushed due to it not reading it for a slight error I had over looked.
 -Didn't work we ended up having to change sprites default starting position with P_START and DOT_START after this it ran perfectly and we didn't have any issues and it ran once we restarted it and I think after this we had no more issues or anything else to change.
+
 -#4 Made a reset button by just choosing the default spawn positions for X and Y on treasure and player along with this we just set the score to zero manually after this we didn't have much issues since it seemed pretty straight foward.
 
 (I apologize for all of the text, but since we weren't aware of the planning step and instead did it all in vc, this was the best way to make up for the missed commits)

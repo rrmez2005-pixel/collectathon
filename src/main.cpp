@@ -49,14 +49,14 @@ int main()
 
     int score = 0;
 
-    static constexpr int P_START_X = 5;
-    static constexpr int P_START_Y = 5;
+    static constexpr int P_START_X = 20;
+    static constexpr int P_START_Y = -50;
 
     static constexpr int DOT_START_X = 50;
     static constexpr int DOT_START_Y = 50;
 
-    bn::sprite_ptr player = bn::sprite_items::square.create_sprite(-50, 50);
-    bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(0, 0);
+    bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
+    bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(DOT_START_X, DOT_START_Y);
 
 
     while (true)

@@ -110,12 +110,6 @@ int main()
             treasure.set_position(DOT_START_X, DOT_START_Y);
         }
 
-        //speed boost
-        if (bn::keypad::a_pressed()) {
-            
-
-        }
-
         // The bounding boxes of the player and treasure, snapped to integer pixels
         bn::rect player_rect = bn::rect(player.x().round_integer(),
                                         player.y().round_integer(),

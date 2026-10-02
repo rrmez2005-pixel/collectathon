@@ -5,7 +5,15 @@ I understand the portions of like player size the buttons what they're trying to
 
 As far as I understand, the code is basically creating a game for people to compete with each other. As the player, you pick up gold dots and gain points up to a max of 11 characters (So the number can go up to 99999999999 essentially?). From what I understand there is no time limit, so the game currently is to just spend as much time as you want and get the highest score.
 ## Planning required changes
+We were confused on this step, because in the instructions.md it says to plan inside of the isntructions.md, so we took it as some sort of typo. We ended up planning everything in Discord voice chat together instead. Here are the steps/ideas we did have while in voice chat together though.
 
+For required change #2 we first referred back to one of the previous lessons and used the backdrop code to change the backdrop here. But it didn't initially work because we didn't have the backdrop #include. So after adding the #include, the code worked.
+
+For required change #5 I had prior experience in one of the earlier assignments where I added my own twist to make the sprite not be able to leave the boundaries of the screen. So I brought up the code to Raul and we discussed how to alter the code slightly to make the looping work. Since my code was based on setting the sprites x/y values to exactly where the border of the screen would be, we just reversed the order to loop the sprite instead. So we made it so that when the sprite goes beyond the boundary in the positive value of either axis, then it would change the sprites x/y values to be in the negative value (the other side), and vice versa. But the code still didn't work and we struggled with some testing for about 10 minutes. Until I looked back at my code and realized that we forgot to set the sprites new x/y values (this is important because the values were basically just sitting there not being used, but after setting the sprites value, we actually USED the new x/y values).
+
+Now, we are on #6 which is the last change. And so far, we set up the if statement for when someone presses a. And we changed around some of the value like speed to not be fixed and instead adjustable. From there, I made a boosts variable to keep track of how many boosts the payer currently has. Then we decided the next step was to combine all of these to make the boosts counter decrease per button press, and apply the speed boost per button press. But now what we're stuck on is a way to create a timer to time how long each burst of speed should last for. We're not quite sure how to do this, but we're currently thinking that we may need to have another #include that allows the usage of a timer/clock instead of making an artificial timer.
+
+(I apologize for all of the text, but since we weren't aware of the planning step and instead did it all in vc, this was the best way to make up for the missed commits)
 ## Brainstorming game ideas
 
 ## Plan for implementing game

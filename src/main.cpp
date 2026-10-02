@@ -14,9 +14,6 @@
 #include "bn_sprite_items_square.h"
 #include "common_fixed_8x16_font.h"
 
-// Pixels / Frame player moves at
-static constexpr bn::fixed SPEED = 5;
-
 //Starting position for player and dot
 static constexpr int START_X = 5;
 static constexpr int START_Y = 10;
@@ -51,6 +48,9 @@ int main()
     bn::sprite_text_generator text_generator(common::fixed_8x16_sprite_font);
 
     int score = 0;
+    int boosts = 3;
+    // Pixels / Frame player moves at
+    int speed = 1;
 
     static constexpr int P_START_X = 20;
     static constexpr int P_START_Y = -50;
@@ -87,19 +87,19 @@ int main()
         // Move player with d-pad
         if (bn::keypad::left_held())
         {
-            player.set_x(player.x() - SPEED);
+            player.set_x(player.x() - speed);
         }
         if (bn::keypad::right_held())
         {
-            player.set_x(player.x() + SPEED);
+            player.set_x(player.x() + speed);
         }
         if (bn::keypad::up_held())
         {
-            player.set_y(player.y() - SPEED);
+            player.set_y(player.y() - speed);
         }
         if (bn::keypad::down_held())
         {
-            player.set_y(player.y() + SPEED);
+            player.set_y(player.y() + speed);
         }
 
         //reset position and score
@@ -108,6 +108,13 @@ int main()
             score = 0;
             player.set_position(P_START_X, P_START_Y);
             treasure.set_position(DOT_START_X, DOT_START_Y);
+        }
+
+        if (bn::keypad::a_pressed()) {
+            if(boosts >= 1) {
+                speed = 5;
+                boosts = boosts - 1; 
+            }
         }
 
         // The bounding boxes of the player and treasure, snapped to integer pixels

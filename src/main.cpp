@@ -113,9 +113,12 @@ int main()
         if (bn::keypad::a_pressed()) {
             if(boosts >= 1) {
                 speed = 5;
-                boosts = boosts - 1; 
+                boosts = boosts - 1;    
+            }
+            for (int i = 1; i < 180; i++) {
                 
             }
+            speed = 1;
         }
 
         // The bounding boxes of the player and treasure, snapped to integer pixels

@@ -50,8 +50,8 @@ int main()
     int score = 0;
     int boosts = 3;
     int count = 0;
-    // Pixels / Frame player moves at
     int speed = 1;
+    bool counting = false;
 
 
     static constexpr int P_START_X = 20;
@@ -114,20 +114,22 @@ int main()
             treasure.set_position(DOT_START_X, DOT_START_Y);
         }
 
-        for (int i = 1; i < 60; i++) {
-                
-        }
         if (bn::keypad::a_pressed()) {
             if(boosts >= 1) {
                 speed = 5;
                 boosts = boosts - 1; 
-                count++;   
+                count = 0;
+                counting = true;
             }
         }
 
-        if(count>=180) {
+        if(counting) {
+            count++;
+            if(count >= 180) { //180 = 3 seconds
+                bn::backdrop::set_color(bn::color(0,0,0)); //Visual test to see if the code even gets this far.
                 speed = 1;
-                count = 0;
+                counting = false;
+            }
         }
 
         // The bounding boxes of the player and treasure, snapped to integer pixels

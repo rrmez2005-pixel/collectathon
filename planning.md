@@ -13,6 +13,15 @@ For required change #5 I had prior experience in one of the earlier assignments 
 
 Now, we are on #6 which is the last change. And so far, we set up the if statement for when someone presses a. And we changed around some of the value like speed to not be fixed and instead adjustable. From there, I made a boosts variable to keep track of how many boosts the payer currently has. Then we decided the next step was to combine all of these to make the boosts counter decrease per button press, and apply the speed boost per button press. But now what we're stuck on is a way to create a timer to time how long each burst of speed should last for. We're not quite sure how to do this, but we're currently thinking that we may need to have another #include that allows the usage of a timer/clock instead of making an artificial timer.
 
+-On #1 we changed the player speed to 5 for player speed which ended up working right away.
+
+- #3 I wanted to just add P_START X and Y along with the dot but it didn't work once we had pushed due to it not reading it for a slight error I had over looked.
+-Didn't work we ended up having to change sprites default starting position with P_START and DOT_START after this it ran perfectly and we didn't have any issues and it ran once we restarted it and I think after this we had no more issues or anything else to change.
+
+-#4 Made a reset button by just choosing the default spawn positions for X and Y on treasure and player along with this we just set the score to zero manually after this we didn't have much issues since it seemed pretty straight foward.
+
+#6 We are gonna attempt to make a loop with 3 different 60 frame loops for a total 180 frames/ 3 seconds. Along with this if we can hopefully we can make it just one big 180 frame loop.
+
 (I apologize for all of the text, but since we weren't aware of the planning step and instead did it all in vc, this was the best way to make up for the missed commits)
 ## Brainstorming game ideas
 

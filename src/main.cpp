@@ -49,8 +49,9 @@ int main()
 
     int score = 0;
     int boosts = 3;
-    int count = 0;
     int speed = 1;
+
+    int count = 0;
     bool counting = false;
 
 
@@ -114,19 +115,19 @@ int main()
             treasure.set_position(DOT_START_X, DOT_START_Y);
         }
 
+        //Player speed boost
         if (bn::keypad::a_pressed()) {
             if(boosts >= 1) {
                 speed = 5;
                 boosts = boosts - 1; 
+
                 count = 0;
                 counting = true;
             }
         }
-
         if(counting) {
             count++;
             if(count >= 180) { //180 = 3 seconds
-                bn::backdrop::set_color(bn::color(0,0,0)); //Visual test to see if the code even gets this far.
                 speed = 1;
                 counting = false;
             }

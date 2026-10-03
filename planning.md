@@ -20,6 +20,8 @@ Now, we are on #6 which is the last change. And so far, we set up the if stateme
 
 -#4 Made a reset button by just choosing the default spawn positions for X and Y on treasure and player along with this we just set the score to zero manually after this we didn't have much issues since it seemed pretty straight foward.
 
+#6 We are gonna attempt to make a loop with 3 different 60 frame loops for a total 180 frames/ 3 seconds. Along with this if we can hopefully we can make it just one big 180 frame loop.
+
 (I apologize for all of the text, but since we weren't aware of the planning step and instead did it all in vc, this was the best way to make up for the missed commits)
 ## Brainstorming game ideas
 

@@ -126,7 +126,7 @@ int main()
 
         if (start == true) {
             matchTime++;
-            if(matchTime >= 300) {
+            if(matchTime >= 3600) {
                 start = false;
                 matchTime = 0;
                 boosts = 0;

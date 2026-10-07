@@ -32,8 +32,8 @@ static constexpr int MAX_X = bn::display::width() / 2;
 static constexpr int MAX_SCORE_CHARS = 11;
 
 // Score location
-static constexpr int SCORE_X = 70;
-static constexpr int SCORE_Y = -70;
+static constexpr int SCORE_X = 100;
+static constexpr int SCORE_Y = 70;
 static constexpr int Timer_X = 0;
 static constexpr int Timer_Y = -70;
 
@@ -189,7 +189,29 @@ int main()
         if (start == false) {
             text_generator.generate(-85, 0, 
                                 "Press Start to Replay", 
-                                score_sprites); //Prints end of gang text
+                                score_sprites); //Prints end of game text
+        }
+
+        //Represents remaining number of boosts
+        if (boosts == 3) {
+            text_generator.generate(-110, 70, 
+                                ">>>", 
+                                score_sprites);
+        }
+        else if (boosts == 2) {
+            text_generator.generate(-110, 70, 
+                                ">>", 
+                                score_sprites);
+        }
+        else if (boosts == 1) {
+            text_generator.generate(-110, 70, 
+                                ">", 
+                                score_sprites);
+        }
+        else {
+            text_generator.generate(-110, 70, 
+                                "", 
+                                score_sprites);
         }
 
         // Update RNG seed every frame so we don't get the same sequence of positions every time

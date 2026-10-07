@@ -107,7 +107,6 @@ int main()
 
         //reset position and score
         if (bn::keypad::start_pressed()) {
-            
             score = 0;
             boosts = 3;
             speed = 1;

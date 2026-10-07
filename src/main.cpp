@@ -34,6 +34,8 @@ static constexpr int MAX_SCORE_CHARS = 11;
 // Score location
 static constexpr int SCORE_X = 70;
 static constexpr int SCORE_Y = -70;
+static constexpr int Timer_X = 0;
+static constexpr int Timer_Y = -70;
 
 int main()
 {
@@ -50,8 +52,10 @@ int main()
     int score = 0;
     int boosts = 3;
     int speed = 1;
+
     int matchTime = 0;
     bool start = true;
+
     int count = 0;
     bool counting = false;
 
@@ -113,7 +117,7 @@ int main()
             speed = 1;
             start = true;
             matchTime = 0;
-            bn::backdrop::set_color(bn::color(15,15,15));
+            bn::backdrop::set_color(bn::color(15,5,15));
             player.set_position(P_START_X, P_START_Y);
             treasure.set_position(DOT_START_X, DOT_START_Y);
         }
@@ -127,9 +131,10 @@ int main()
                 score = 0;
                 boosts = 0;
                 speed = 0;
-                bn::backdrop::set_color(bn::color(0,0,0));
+                bn::backdrop::set_color(bn::color(15,15,15));
             }
         }
+
 
         //Player speed boost
         if (bn::keypad::a_pressed()) {
@@ -170,12 +175,22 @@ int main()
             score++;
         }
 
+        int timer = matchTime/60;
         // Update score display
         bn::string<MAX_SCORE_CHARS> score_string = bn::to_string<MAX_SCORE_CHARS>(score);
+        bn::string<3> timer_string = bn::to_string<3>(timer);
         score_sprites.clear();
         text_generator.generate(SCORE_X, SCORE_Y,
                                 score_string,
                                 score_sprites);
+        text_generator.generate(Timer_X, Timer_Y, //Creates timer at top of the screen
+                                timer_string, 
+                                score_sprites);
+        if (start == false) {
+            text_generator.generate(-85, 0, 
+                                "Press Start to Replay", 
+                                score_sprites); //Prints end of gang text
+        }
 
         // Update RNG seed every frame so we don't get the same sequence of positions every time
         rng.update();

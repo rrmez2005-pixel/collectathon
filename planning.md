@@ -27,5 +27,7 @@ Now, we are on #6 which is the last change. And so far, we set up the if stateme
 
 Timer in the middle of the screen to start, speed boost displayed in the bottom right corner, make multiple treasures spawn in, Match timer
 
+The match timer will determine the end of the match. But there's no set default for the "end" of the game since the game was originally infinite, so we need to make our own replay menu/end of the game menu.
+
 ## Plan for implementing game
 

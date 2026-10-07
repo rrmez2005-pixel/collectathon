@@ -50,7 +50,8 @@ int main()
     int score = 0;
     int boosts = 3;
     int speed = 1;
-
+    int matchTime = 0;
+    bool start = false;
     int count = 0;
     bool counting = false;
 
@@ -110,8 +111,18 @@ int main()
             score = 0;
             boosts = 3;
             speed = 1;
+            start = true;
             player.set_position(P_START_X, P_START_Y);
             treasure.set_position(DOT_START_X, DOT_START_Y);
+        }
+
+        if (start) {
+            matchTime++;
+            if(matchTime >= 3600) {
+                bn::backdrop::set_color(bn::color(0,0,0));
+                player.set_position(P_START_X, P_START_Y);
+                treasure.set_position(DOT_START_X, DOT_START_Y);
+            }
         }
 
         //Player speed boost

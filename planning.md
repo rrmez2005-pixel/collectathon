@@ -25,5 +25,7 @@ Now, we are on #6 which is the last change. And so far, we set up the if stateme
 (I apologize for all of the text, but since we weren't aware of the planning step and instead did it all in vc, this was the best way to make up for the missed commits)
 ## Brainstorming game ideas
 
+Timer in the middle of the screen to start, speed boost displayed in the bottom right corner, make multiple treasures spawn in, Match timer
+
 ## Plan for implementing game
 

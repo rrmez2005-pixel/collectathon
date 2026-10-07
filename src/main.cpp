@@ -14,7 +14,7 @@
 #include "bn_sprite_items_square.h"
 #include "common_fixed_8x16_font.h"
 
-//Starting position for player and dot
+// Starting position for player and dot
 static constexpr int START_X = 5;
 static constexpr int START_Y = 10;
 
@@ -28,7 +28,7 @@ static constexpr int MAX_Y = bn::display::height() / 2;
 static constexpr int MIN_X = -bn::display::width() / 2;
 static constexpr int MAX_X = bn::display::width() / 2;
 
-// Number of characters required to show the longest numer possible in an int (-2147483647)
+// Number of characters required to show the longest number possible in an int (-2147483647)
 static constexpr int MAX_SCORE_CHARS = 11;
 
 // Score location
@@ -39,7 +39,7 @@ int main()
 {
     bn::core::init();
     
-    bn::backdrop::set_color(bn::color(15,5,15));
+    bn::backdrop::set_color(bn::color(15, 5, 15));
 
     bn::random rng = bn::random();
 
@@ -54,22 +54,30 @@ int main()
     int count = 0;
     bool counting = false;
 
-
     static constexpr int P_START_X = 20;
     static constexpr int P_START_Y = -50;
 
-    static constexpr int DOT_START_X = 50;
-    static constexpr int DOT_START_Y = 50;
-
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
-    bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(DOT_START_X, DOT_START_Y);
 
+    // Each coordinate gets its own independent 50 or -50 roll
+    bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(
+        (rng.get_int(0, 2) == 0) ? 50 : -50,
+        (rng.get_int(0, 2) == 0) ? 50 : -50
+    );
+    bn::sprite_ptr treasure2 = bn::sprite_items::dot.create_sprite(
+        (rng.get_int(0, 2) == 0) ? 50 : -50,
+        (rng.get_int(0, 2) == 0) ? 50 : -50
+    );
+    bn::sprite_ptr treasure3 = bn::sprite_items::dot.create_sprite(
+        (rng.get_int(0, 2) == 0) ? 50 : -50,
+        (rng.get_int(0, 2) == 0) ? 50 : -50
+    );
 
     while (true)
     {
-        //Player Looping
+        // Player Looping
         bn::fixed x = player.x();
-        bn::fixed y =  player.y();
+        bn::fixed y = player.y();
 
         if (x > MAX_X) {
             x = MIN_X;
@@ -105,16 +113,18 @@ int main()
             player.set_y(player.y() + speed);
         }
 
-        //reset position and score
+        // Reset position and score
         if (bn::keypad::start_pressed()) {
             score = 0;
             boosts = 3;
             speed = 1;
-            player.set_position(P_START_X, P_START_Y);
-            treasure.set_position(DOT_START_X, DOT_START_Y);
+            player.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
+            treasure.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
+            treasure2.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
+            treasure3.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
         }
 
-        //Player speed boost
+        // Player speed boost
         if (bn::keypad::a_pressed()) {
             if(boosts >= 1) {
                 speed = 5;
@@ -126,30 +136,49 @@ int main()
         }
         if(counting) {
             count++;
-            if(count >= 180) { //180 = 3 seconds
+            if(count >= 180) { // 180 = 3 seconds
                 speed = 1;
                 counting = false;
             }
         }
 
-        // The bounding boxes of the player and treasure, snapped to integer pixels
+        // The bounding boxes of the player and treasures
         bn::rect player_rect = bn::rect(player.x().round_integer(),
                                         player.y().round_integer(),
                                         PLAYER_SIZE.width(),
                                         PLAYER_SIZE.height());
+
         bn::rect treasure_rect = bn::rect(treasure.x().round_integer(),
                                           treasure.y().round_integer(),
                                           TREASURE_SIZE.width(),
                                           TREASURE_SIZE.height());
 
-        // If the bounding boxes overlap, set the treasure to a new location an increase score
+        bn::rect treasure2_rect = bn::rect(treasure2.x().round_integer(),
+                                           treasure2.y().round_integer(),
+                                           TREASURE_SIZE.width(),
+                                           TREASURE_SIZE.height());
+
+        bn::rect treasure3_rect = bn::rect(treasure3.x().round_integer(),
+                                           treasure3.y().round_integer(),
+                                           TREASURE_SIZE.width(),
+                                           TREASURE_SIZE.height());
+
+        // checks each treasure 
         if (player_rect.intersects(treasure_rect))
         {
-            // Jump to any random point in the screen
-            int new_x = rng.get_int(MIN_X, MAX_X);
-            int new_y = rng.get_int(MIN_Y, MAX_Y);
-            treasure.set_position(new_x, new_y);
+            treasure.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
+            score++;
+        }
 
+        if (player_rect.intersects(treasure2_rect))
+        {
+            treasure2.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
+            score++;
+        }
+
+        if (player_rect.intersects(treasure3_rect))
+        {
+            treasure3.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
             score++;
         }
 

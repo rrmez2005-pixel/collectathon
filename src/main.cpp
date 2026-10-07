@@ -118,7 +118,7 @@ int main()
 
         if (start) {
             matchTime++;
-            if(matchTime >= 3600) {
+            if(matchTime >= 300) {
                 bn::backdrop::set_color(bn::color(0,0,0));
                 player.set_position(P_START_X, P_START_Y);
                 treasure.set_position(DOT_START_X, DOT_START_Y);

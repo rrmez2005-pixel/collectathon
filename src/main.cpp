@@ -16,6 +16,7 @@
 #include "bn_sprite_items_sob.h"
 #include "common_fixed_8x16_font.h"
 
+//Local variables ---------------------------------------------------------------------
 static constexpr int START_X = 5;
 static constexpr int START_Y = 10;
 
@@ -38,13 +39,13 @@ int main()
 {
     bn::core::init();
     
+    //Initial values and statements (run off start of game)--------------------------------
     bn::backdrop::set_color(bn::color(15, 5, 15));
-
     bn::random rng = bn::random();
-
     bn::vector<bn::sprite_ptr, MAX_TEXT_CHARS> score_sprites = {};
     bn::sprite_text_generator text_generator(common::fixed_8x16_sprite_font);
 
+    //Variables----------------------------------------------------------------------------
     int score = 0;
     int boosts = 3;
     int speed = 1;
@@ -58,10 +59,9 @@ int main()
     static constexpr int P_START_X = 20;
     static constexpr int P_START_Y = -50;
 
+    //Sprite creation ----------------------------------------------------------------------
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
     bn::sprite_ptr weirdface = bn::sprite_items::weirdface.create_sprite();
-
-
     bn::sprite_ptr sob = bn::sprite_items::sob.create_sprite(
         (rng.get_int(0, 2) == 0) ? 50 : -50,
         (rng.get_int(0, 2) == 0) ? 50 : -50
@@ -75,12 +75,14 @@ int main()
         (rng.get_int(0, 2) == 0) ? 50 : -50
     );
 
-
+    //All game logic (must run inside of the loop in order to update per frame of running the game)
     while (true)
     {
+        //Player position variables
         bn::fixed x = player.x();
         bn::fixed y = player.y();
 
+        //Player screen looping logic
         if (x > MAX_X) {
             x = MIN_X;
         }
@@ -97,6 +99,7 @@ int main()
         player.set_x(x);
         player.set_y(y);
 
+        //Player movement logic
         if (bn::keypad::left_held())
         {
             player.set_x(player.x() - speed);
@@ -114,6 +117,19 @@ int main()
             player.set_y(player.y() + speed);
         }
 
+        //Match timer, and end of match logic
+        if (start == true) {
+            matchTime++;
+            if(matchTime >= 3600) {
+                start = false;
+                matchTime = 0;
+                boosts = 0;
+                speed = 0;
+                bn::backdrop::set_color(bn::color(15, 15, 15));
+            }
+        }
+
+        //Replay system
         if (bn::keypad::start_pressed()) {
             score = 0;
             boosts = 3;
@@ -129,17 +145,7 @@ int main()
             sob3.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
         }
 
-        if (start == true) {
-            matchTime++;
-            if(matchTime >= 3600) {
-                start = false;
-                matchTime = 0;
-                boosts = 0;
-                speed = 0;
-                bn::backdrop::set_color(bn::color(15, 15, 15));
-            }
-        }
-
+        //Player speed boost mechanic
         if (start && bn::keypad::a_pressed()) {
             if(boosts >= 1) {
                 speed = 5;
@@ -157,6 +163,7 @@ int main()
             }
         }
 
+        //Sprite(s) dimensions
         bn::rect player_rect = bn::rect(player.x().round_integer(),
                                         player.y().round_integer(),
                                         PLAYER_SIZE.width(),
@@ -177,6 +184,7 @@ int main()
                                            TREASURE_SIZE.width(),
                                            TREASURE_SIZE.height());
 
+        //Treasure rng spawn locations
         if (start && player_rect.intersects(sob_rect))
         {
             sob.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
@@ -195,6 +203,7 @@ int main()
             score++;
         }
 
+        //All in-game visual display logic
         int timer = matchTime / 60;
         bn::string<MAX_TEXT_CHARS> score_string = bn::to_string<MAX_TEXT_CHARS>(score);
         bn::string<3> timer_string = bn::to_string<3>(timer);

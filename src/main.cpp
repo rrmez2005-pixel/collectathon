@@ -58,20 +58,19 @@ int main()
     static constexpr int P_START_X = 20;
     static constexpr int P_START_Y = -50;
 
-    bn::sprite_ptr sob = bn::sprite_items::sob.create_sprite();
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
     bn::sprite_ptr weirdface = bn::sprite_items::weirdface.create_sprite();
 
 
-    bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(
+    bn::sprite_ptr sob = bn::sprite_items::sob.create_sprite(
         (rng.get_int(0, 2) == 0) ? 50 : -50,
         (rng.get_int(0, 2) == 0) ? 50 : -50
     );
-    bn::sprite_ptr treasure2 = bn::sprite_items::dot.create_sprite(
+    bn::sprite_ptr sob2 = bn::sprite_items::sob.create_sprite(
         (rng.get_int(0, 2) == 0) ? 50 : -50,
         (rng.get_int(0, 2) == 0) ? 50 : -50
     );
-    bn::sprite_ptr treasure3 = bn::sprite_items::dot.create_sprite(
+    bn::sprite_ptr sob3 = bn::sprite_items::sob.create_sprite(
         (rng.get_int(0, 2) == 0) ? 50 : -50,
         (rng.get_int(0, 2) == 0) ? 50 : -50
     );
@@ -125,9 +124,9 @@ int main()
             counting = false;
             bn::backdrop::set_color(bn::color(15, 5, 15));
             player.set_position(P_START_X, P_START_Y);
-            treasure.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
-            treasure2.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
-            treasure3.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
+            sob.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
+            sob2.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
+            sob3.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
         }
 
         if (start == true) {
@@ -163,36 +162,36 @@ int main()
                                         PLAYER_SIZE.width(),
                                         PLAYER_SIZE.height());
 
-        bn::rect treasure_rect = bn::rect(treasure.x().round_integer(),
-                                          treasure.y().round_integer(),
+        bn::rect sob_rect = bn::rect(sob.x().round_integer(),
+                                          sob.y().round_integer(),
                                           TREASURE_SIZE.width(),
                                           TREASURE_SIZE.height());
 
-        bn::rect treasure2_rect = bn::rect(treasure2.x().round_integer(),
-                                           treasure2.y().round_integer(),
+        bn::rect sob2_rect = bn::rect(sob2.x().round_integer(),
+                                           sob2.y().round_integer(),
                                            TREASURE_SIZE.width(),
                                            TREASURE_SIZE.height());
 
-        bn::rect treasure3_rect = bn::rect(treasure3.x().round_integer(),
-                                           treasure3.y().round_integer(),
+        bn::rect sob3_rect = bn::rect(sob3.x().round_integer(),
+                                           sob3.y().round_integer(),
                                            TREASURE_SIZE.width(),
                                            TREASURE_SIZE.height());
 
-        if (start && player_rect.intersects(treasure_rect))
+        if (start && player_rect.intersects(sob_rect))
         {
-            treasure.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
+            sob.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
             score++;
         }
 
-        if (start && player_rect.intersects(treasure2_rect))
+        if (start && player_rect.intersects(sob2_rect))
         {
-            treasure2.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
+            sob2.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
             score++;
         }
 
-        if (start && player_rect.intersects(treasure3_rect))
+        if (start && player_rect.intersects(sob3_rect))
         {
-            treasure3.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
+            sob3.set_position(rng.get_int(MIN_X, MAX_X), rng.get_int(MIN_Y, MAX_Y));
             score++;
         }
 

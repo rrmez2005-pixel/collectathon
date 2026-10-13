@@ -20,7 +20,7 @@
 static constexpr int START_X = 5;
 static constexpr int START_Y = 10;
 
-static constexpr bn::size PLAYER_SIZE = {8, 8};
+static constexpr bn::size PLAYER_SIZE = {16, 16};
 static constexpr bn::size TREASURE_SIZE = {8, 8};
 
 static constexpr int MIN_Y = -bn::display::height() / 2;
@@ -60,8 +60,7 @@ int main()
     static constexpr int P_START_Y = -50;
 
     //Sprite creation ----------------------------------------------------------------------
-    bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
-    bn::sprite_ptr weirdface = bn::sprite_items::weirdface.create_sprite();
+    bn::sprite_ptr player = bn::sprite_items::weirdface.create_sprite(P_START_X, P_START_Y);
     bn::sprite_ptr sob = bn::sprite_items::sob.create_sprite(
         (rng.get_int(0, 2) == 0) ? 50 : -50,
         (rng.get_int(0, 2) == 0) ? 50 : -50

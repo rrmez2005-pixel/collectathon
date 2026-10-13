@@ -14,6 +14,7 @@
 
 #include "bn_sprite_items_dot.h"
 #include "bn_sprite_items_square.h"
+#include "bn_sprite_items_sob.h"
 #include "common_fixed_8x16_font.h"
 
 static constexpr int START_X = 5;
@@ -58,6 +59,7 @@ int main()
     static constexpr int P_START_X = 20;
     static constexpr int P_START_Y = -50;
 
+    bn::sprite_ptr sob = bn::sprite_items::sob.create_sprite();
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
 
     bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(

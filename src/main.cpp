@@ -119,8 +119,8 @@ int main()
 
         //Match timer, and end of match logic
         if (start == true) {
-            matchTime++;
-            if(matchTime >= 3600) {
+            matchTime--;
+            if(matchTime <= 0) {
                 start = false;
                 matchTime = 0;
                 boosts = 0;
@@ -145,24 +145,10 @@ int main()
             sob3.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
         }
 
-<<<<<<< HEAD
         //Player speed boost mechanic
-=======
-        if (start == true) {
-            matchTime--;
-            if(matchTime <= 0) {
-                start = false;
-                matchTime = 0;
-                boosts = 0;
-                speed = 0;
-                bn::backdrop::set_color(bn::color(15, 15, 15));
-            }
-        }
-
->>>>>>> 090fd4b9b6ed5ffda0353dd59a2f51b2c5abe9df
         if (start && bn::keypad::a_pressed()) {
             if(boosts >= 1) {
-                speed = 5;
+                speed = 3;
                 boosts = boosts - 1; 
 
                 count = 0;
@@ -171,7 +157,7 @@ int main()
         }
         if(counting) {
             count++;
-            if(count >= 180) {
+            if(count >= 300) {
                 speed = 1;
                 counting = false;
             }

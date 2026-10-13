@@ -50,7 +50,7 @@ int main()
     int boosts = 3;
     int speed = 1;
 
-    int matchTime = 0;
+    int matchTime = 3600;
     bool start = true;
 
     int count = 0;
@@ -135,7 +135,7 @@ int main()
             boosts = 3;
             speed = 1;
             start = true;
-            matchTime = 0;
+            matchTime = 3600;
             count = 0;
             counting = false;
             bn::backdrop::set_color(bn::color(15, 5, 15));
@@ -145,7 +145,21 @@ int main()
             sob3.set_position((rng.get_int(0, 2) == 0) ? 50 : -50, (rng.get_int(0, 2) == 0) ? 50 : -50);
         }
 
+<<<<<<< HEAD
         //Player speed boost mechanic
+=======
+        if (start == true) {
+            matchTime--;
+            if(matchTime <= 0) {
+                start = false;
+                matchTime = 0;
+                boosts = 0;
+                speed = 0;
+                bn::backdrop::set_color(bn::color(15, 15, 15));
+            }
+        }
+
+>>>>>>> 090fd4b9b6ed5ffda0353dd59a2f51b2c5abe9df
         if (start && bn::keypad::a_pressed()) {
             if(boosts >= 1) {
                 speed = 5;

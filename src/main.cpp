@@ -11,7 +11,6 @@
 #include <bn_backdrop.h>
 
 #include "bn_sprite_items_weirdface.h"
-
 #include "bn_sprite_items_dot.h"
 #include "bn_sprite_items_square.h"
 #include "bn_sprite_items_sob.h"
@@ -61,6 +60,8 @@ int main()
 
     bn::sprite_ptr sob = bn::sprite_items::sob.create_sprite();
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(P_START_X, P_START_Y);
+    bn::sprite_ptr weirdface = bn::sprite_items::weirdface.create_sprite();
+
 
     bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(
         (rng.get_int(0, 2) == 0) ? 50 : -50,
@@ -75,8 +76,6 @@ int main()
         (rng.get_int(0, 2) == 0) ? 50 : -50
     );
 
-
-    bn::sprite_ptr weirdface = bn::sprite_items::weirdface.create_sprite();
 
     while (true)
     {

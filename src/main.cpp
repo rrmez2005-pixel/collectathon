@@ -10,6 +10,8 @@
 #include <bn_string.h>
 #include <bn_backdrop.h>
 
+#include "bn_sprite_items_weirdface.h"
+
 #include "bn_sprite_items_dot.h"
 #include "bn_sprite_items_square.h"
 #include "common_fixed_8x16_font.h"
@@ -70,6 +72,9 @@ int main()
         (rng.get_int(0, 2) == 0) ? 50 : -50,
         (rng.get_int(0, 2) == 0) ? 50 : -50
     );
+
+
+    bn::sprite_ptr weirdface = bn::sprite_items::weirdface.create_sprite();
 
     while (true)
     {
